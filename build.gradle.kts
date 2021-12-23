@@ -84,6 +84,9 @@ sourceSets.test {
 }
 
 tasks {
+    replace("jvmSourcesJar", Jar::class).run {
+        from(sourceSets["main"].allSource)
+    }
     withType<Test> {
         maxParallelForks = 1
         jvmArgs("--add-opens", "java.base/jdk.internal.misc=ALL-UNNAMED",
